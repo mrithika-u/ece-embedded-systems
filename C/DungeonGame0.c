@@ -16,7 +16,7 @@ int main()
 
     scanf("%d",&avatar);
 
-    if(avatar == 0 | avatar == 1 | avatar == 2)
+    if(avatar == 0 || avatar == 1 || avatar == 2)
     {
     Sleep(500);
     system("cls");
@@ -53,7 +53,25 @@ int main()
         printf("         o.o");
         Sleep(500);
         system("cls");
-        return 0;
+
+        char move;
+
+        if(1 == 1)
+        {
+            scanf(" %c", &move);
+            if(move == 'w')
+            {
+                printf(" ");
+            }
+
+            else if(move == 's')
+            {
+                printf("\n");
+            }
+
+        }
+
+
     }
     else if(avatar == 1)
     {
