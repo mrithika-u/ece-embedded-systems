@@ -1,4 +1,10 @@
+# ESP-IDF
 **/build/
 **/managed_components/
 **/sdkconfig
 .vscode/
+
+# C compiled files
+*.exe
+*.o
+*.out
