@@ -1,0 +1,7 @@
+mri math 9
+sri eng 10
+musk science 15
+mri math 5
+sri design 5
+mrithika math 100
+krishna science 100

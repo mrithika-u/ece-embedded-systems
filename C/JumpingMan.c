@@ -78,24 +78,24 @@ int main()
     printf("              \\\n");
     Sleep(500);
     system("cls");
-    printf("               \n");
+    printf("               \\\n");
     printf("               --o\n");
     printf("              \\\n");
         Sleep(500);
     system("cls");
-    printf("              |\n");
-    printf("             /|\n");
-    printf("              o\n");
+    printf("               |\n");
+    printf("              /|\n");
+    printf("               o\n");
         Sleep(500);
     system("cls");
-    printf("              \n");
-    printf("             o--|\n");
-    printf("              \\\n");
+    printf("               /\n");
+    printf("              o--\n");
+    printf("               \\\n");
         Sleep(500);
     system("cls");
-    printf("              o\n");
-    printf("             /|\n");
-    printf("              |\n");
+    printf("               o\n");
+    printf("              /|\n");
+    printf("               |\n");
     return 0;
 }
 

@@ -15,7 +15,7 @@ int main()
     scanf("%d", &n);
 
     struct student s[n];
-    printf("\nEnter details of each student: \n");
+    printf("\nEnter details of each student: (name subject marks)\n");
     for(i = 0; i <n; i++)
     {
         scanf("%s %s %d", s[i].name, s[i].subject, &s[i].marks);
