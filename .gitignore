@@ -8,3 +8,20 @@
 *.exe
 *.o
 *.out
+
+
+# STM32CubeIDE workspace
+STM32/.metadata/
+**/.metadata/
+
+# STM32 build outputs
+**/Debug/
+**/Release/
+
+*.elf
+*.bin
+*.hex
+*.map
+*.d
+*.su
+*.cyclo
