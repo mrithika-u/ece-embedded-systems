@@ -18,7 +18,23 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+
+//#include "uart.h"
 #include <stdio.h>
+
+/* Private variables ---------------------------------------------------------*/
+TIM_HandleTypeDef htim2;
+
+UART_HandleTypeDef huart1;
+
+int __io_putchar(int ch)
+{
+    HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+    return ch;
+}
+
+
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -44,46 +60,48 @@ TIM_HandleTypeDef htim2;
 
 UART_HandleTypeDef huart1;
 
-
 /* USER CODE BEGIN PV */
+
 uint32_t distance = 0;
 uint32_t time = 0;
 
 void delay_us(uint16_t us)
 {
-	__HAL_TIM_SET_COUNTER(&htim2, 0);
-	while (__HAL_TIM_GET_COUNTER(&htim2) < us);
+    __HAL_TIM_SET_COUNTER(&htim2, 0);
+
+    while (__HAL_TIM_GET_COUNTER(&htim2) < us);
 }
 
 float ultrasonic_read(void)
 {
-	uint32_t start = 0;
-	uint32_t stop = 0;
-	uint32_t time = 0;
-	float distance = 0;
+    uint32_t start = 0;
+    uint32_t stop = 0;
+    uint32_t time = 0;
+    float distance = 0;
 
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET); //set trig low
-	delay_us(2);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+    delay_us(2);
 
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET); // set trig high till 10us
-	delay_us(10);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+    delay_us(10);
 
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET); // trig pin low
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
 
-	while(!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1))); // waiting till echo pin is high
+    while(!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1)));
 
-	start = __HAL_TIM_GET_COUNTER(&htim2); //count in us
+    start = __HAL_TIM_GET_COUNTER(&htim2);
 
-	while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1));
+    while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1));
 
-	stop = __HAL_TIM_GET_COUNTER(&htim2);
+    stop = __HAL_TIM_GET_COUNTER(&htim2);
 
-	time = stop - start;
+    time = stop - start;
 
-	distance = (time * 0.0343f) / 2.0f;
+    distance = (time * 0.0343f) / 2.0f;
 
-	return distance;
+    return distance;
 }
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -134,7 +152,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-
+  HAL_TIM_Base_Start(&htim2);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
